@@ -87,25 +87,25 @@ parameters to set your perfect profile.
 
 NOTE: for changes to take effect, you'll need to source again your `.tmux.conf` file.
 
-* [@thumbs-key](#thumbs-key)
-* [@thumbs-alphabet](#thumbs-alphabet)
-* [@thumbs-reverse](#thumbs-reverse)
-* [@thumbs-unique](#thumbs-unique)
-* [@thumbs-position](#thumbs-position)
-* [@thumbs-regexp-N](#thumbs-regexp-N)
-* [@thumbs-command](#thumbs-command)
-* [@thumbs-upcase-command](#thumbs-upcase-command)
-* [@thumbs-multi-command](#thumbs-multi-command)
-* [@thumbs-bg-color](#thumbs-bg-color)
-* [@thumbs-fg-color](#thumbs-fg-color)
-* [@thumbs-hint-bg-color](#thumbs-hint-bg-color)
-* [@thumbs-hint-fg-color](#thumbs-hint-fg-color)
-* [@thumbs-select-fg-color](#thumbs-select-fg-color)
-* [@thumbs-select-bg-color](#thumbs-select-bg-color)
-* [@thumbs-multi-fg-color](#thumbs-multi-fg-color)
-* [@thumbs-multi-bg-color](#thumbs-multi-bg-color)
-* [@thumbs-contrast](#thumbs-contrast)
-* [@thumbs-osc52](#thumbs-osc52)
+- [@thumbs-key](#thumbs-key)
+- [@thumbs-alphabet](#thumbs-alphabet)
+- [@thumbs-reverse](#thumbs-reverse)
+- [@thumbs-unique](#thumbs-unique)
+- [@thumbs-position](#thumbs-position)
+- [@thumbs-regexp-N](#thumbs-regexp-n)
+- [@thumbs-command](#thumbs-command)
+- [@thumbs-upcase-command](#thumbs-upcase-command)
+- [@thumbs-multi-command](#thumbs-multi-command)
+- [@thumbs-bg-color](#thumbs-bg-color)
+- [@thumbs-fg-color](#thumbs-fg-color)
+- [@thumbs-hint-bg-color](#thumbs-hint-bg-color)
+- [@thumbs-hint-fg-color](#thumbs-hint-fg-color)
+- [@thumbs-select-fg-color](#thumbs-select-fg-color)
+- [@thumbs-select-bg-color](#thumbs-select-bg-color)
+- [@thumbs-multi-fg-color](#thumbs-multi-fg-color)
+- [@thumbs-multi-bg-color](#thumbs-multi-bg-color)
+- [@thumbs-contrast](#thumbs-contrast)
+- [@thumbs-osc52](#thumbs-osc52)
 
 ### @thumbs-key
 
@@ -130,7 +130,7 @@ bind-key \; thumbs-pick
 
 `default: qwerty`
 
-Choose which set of characters is used to build hints. Review all [available alphabets](#Alphabets)
+Choose which set of characters is used to build hints. Review all [available alphabets](#alphabets)
 
 For example:
 
@@ -344,6 +344,25 @@ For example:
 set -g @thumbs-osc52 1
 ```
 
+### @thumbs-keep-colors
+
+`default: 0`
+
+Keep text styling of the input when displaying matches.
+
+For example:
+
+```
+set -g @thumbs-keep-colors 1
+
+for color in {0..255} ; do
+    tput setab $color
+        echo -n " "
+        done
+        tput sgr0
+        echo
+```
+
 #### Colors
 
 This is the list of predefined colors:
@@ -406,17 +425,17 @@ If you run standalone `thumbs` with multi selection mode (-m) you will be able t
 This is the known list of versions of `tmux` compatible with `tmux-thumbs`:
 
 | Version | Compatible |
-|:-------:|:----------:|
-|   3.0a  |     ✅     |
-|   2.9a  |     ✅     |
-|   2.8   |      ❓    |
-|   2.7   |      ❓    |
+| :-----: | :--------: |
+|  3.0a   |     ✅     |
+|  2.9a   |     ✅     |
+|   2.8   |     ❓     |
+|   2.7   |     ❓     |
 |   2.6   |     ✅     |
-|   2.5   |      ❓    |
-|   2.4   |      ❓    |
-|   2.3   |      ❓    |
-|   1.8   |      ❓    |
-|   1.7   |      ❓    |
+|   2.5   |     ❓     |
+|   2.4   |     ❓     |
+|   2.3   |     ❓     |
+|   1.8   |     ❓     |
+|   1.7   |     ❓     |
 
 If you can check hat `tmux-thumbs` is or is not compatible with some specific version of `tmux`, let me know.
 
@@ -433,7 +452,7 @@ cargo install thumbs
 And those are all available options:
 
 ```
-thumbs 0.7.1
+thumbs 0.8
 A lightning fast version copy/pasting like vimium/vimperator
 
 USAGE:
@@ -446,6 +465,13 @@ FLAGS:
     -r, --reverse     Reverse the order for assigned hints
     -u, --unique      Don't show duplicated hints for the same match
     -V, --version     Prints version information
+    -c, --contrast       Put square brackets around hint for visibility
+    -h, --help           Prints help information
+        --keep-colors    Preserve text styling of input
+    -m, --multi          Enable multi-selection
+    -r, --reverse        Reverse the order for assigned hints
+    -u, --unique         Don't show duplicated hints for the same match
+    -V, --version        Prints version information
 
 OPTIONS:
     -a, --alphabet <alphabet>                          Sets the alphabet [default: qwerty]
@@ -464,7 +490,6 @@ OPTIONS:
         --multi-fg-color <multi_foreground_color>      Sets the foreground color for a multi selected item [default: cyan]
     -t, --target <target>                              Stores the hint in the specified path
 ```
-
 
 If you want to enjoy terminal hints, you can do things like this without `tmux`:
 
@@ -495,8 +520,8 @@ I was curious to know if this was possible to be written in [Rust](https://www.r
 
 ## Roadmap
 
-- [X] Support multi selection
-- [X] Decouple `tmux-thumbs` from `tmux`
+- [x] Support multi selection
+- [x] Decouple `tmux-thumbs` from `tmux`
 - [ ] Code [Kitty](https://github.com/kovidgoyal/kitty) plugin, now that `thumbs` can run standalone
 
 ## Troubleshooting
@@ -509,7 +534,7 @@ set -g visual-bell off
 set -g visual-silence on
 ```
 
-You can read a bit more about this issue here: https://github.com/fcsonline/tmux-thumbs/issues/88
+You can read a bit more about this issue here: <https://github.com/fcsonline/tmux-thumbs/issues/88>
 
 Every time I use `tmux-thumbs`, dead panes are created. Just review if you have
 this setting on:
@@ -518,7 +543,7 @@ this setting on:
 set -g remain-on-exit on
 ```
 
-You can read a bit more about this issue here: https://github.com/fcsonline/tmux-thumbs/issues/84
+You can read a bit more about this issue here: <https://github.com/fcsonline/tmux-thumbs/issues/84>
 
 ## Donations
 
