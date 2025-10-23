@@ -18,8 +18,8 @@ elif [[ $(${THUMBS_BINARY} --version) != "thumbs ${VERSION}" ]]; then
 fi
 
 function get-opt-value() {
-  tmux show -vg "@thumbs-${1}" 2>/dev/null
-  tmux show -v "${2:-g}" "${1}" 2>/dev/null
+  tmux show -vg "@thumbs-${1}" 2> /dev/null
+  tmux show -v "${2:-g}" "${1}" 2> /dev/null
 }
 
 function get-thumb-opt-value() {
@@ -27,7 +27,7 @@ function get-thumb-opt-value() {
 }
 
 function set-opt-value() {
-  tmux set "${3:-g}" "${1}" "${2}" 2>/dev/null
+  tmux set "${3:-g}" "${1}" "${2}" 2> /dev/null
 
 }
 
@@ -89,4 +89,6 @@ add-param upcase-command string
 add-param multi-command string
 add-param osc52 boolean
 
-"${TMUX_THUMBS_BINARY}" "${PARAMS[@]}" || true
+# echo "${TMUX_THUMBS_BINARY}" "${PARAMS[@]}" > /tmp/capture.log
+
+"${TMUX_THUMBS_BINARY}" "${PARAMS[@]}"
